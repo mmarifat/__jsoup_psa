@@ -18,7 +18,8 @@ public class ScrapTvShows {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        Connector connector = new Connector();
+        //un-comment this to connect and saved into database
+        //Connector connector = new Connector();
 
         try {
             //page handle
@@ -37,25 +38,27 @@ public class ScrapTvShows {
                     Elements Link = element.select("h2.post-title a[href]");
                     Elements Img = element.select("img.attachment-thumb-medium");
 
-                    System.out.println("Movie Name: " + Name.text() + "\nCategory: " + Category.text() + "\nDescription: " + Description.text() + "\nAuthor: " + Author.text() + "\nUpload Date: " + UploadDate.text().split("\\·")[2] + "\nLink: " + Link.attr("href") + "\nImage: https://psarips.net" + Img.attr("src"));
+                    System.out.println("Tv Show Name: " + Name.text() + "\nCategory: " + Category.text() + "\nDescription: " + Description.text() + "\nAuthor: " + Author.text() + "\nUpload Date: " + UploadDate.text().split("\\·")[2] + "\nLink: " + Link.attr("href") + "\nImage: https://psarips.net" + Img.attr("src"));
 
-                    HashMap<String, Object> whereScrap = new HashMap<>();
-                    whereScrap.put("link", Link.attr("href"));
-                    if (connector.countRow("scrapedData", whereScrap) == 0) {
-                        HashMap<String, Object> whereCustomer = new HashMap<>();
-                        whereCustomer.put("name", Name.text());
-                        whereCustomer.put("category", Category.text());
-                        whereCustomer.put("description", Description.text());
-                        whereCustomer.put("author", Author.text());
-                        whereCustomer.put("uploadDate", UploadDate.text().split("\\·")[2]);
-                        whereCustomer.put("link", Link.attr("href"));
-                        whereCustomer.put("image", "https://psarips.eu" + Img.attr("src"));
-                        connector.insert("scrapedData", whereCustomer);
-                        System.out.println(connector.countRow("scrapedData", whereScrap));
-                        System.out.println("Data added successfully");
-                    } else {
-                        System.out.println("Duplicate found.");
-                    }
+//un-comment this to connect and saved into database
+                    
+//                    HashMap<String, Object> whereScrap = new HashMap<>();
+//                    whereScrap.put("link", Link.attr("href"));
+//                    if (connector.countRow("scrapedData", whereScrap) == 0) {
+//                        HashMap<String, Object> whereCustomer = new HashMap<>();
+//                        whereCustomer.put("name", Name.text());
+//                        whereCustomer.put("category", Category.text());
+//                        whereCustomer.put("description", Description.text());
+//                        whereCustomer.put("author", Author.text());
+//                        whereCustomer.put("uploadDate", UploadDate.text().split("\\·")[2]);
+//                        whereCustomer.put("link", Link.attr("href"));
+//                        whereCustomer.put("image", "https://psarips.eu" + Img.attr("src"));
+//                        connector.insert("scrapedData", whereCustomer);
+//                        System.out.println(connector.countRow("scrapedData", whereScrap));
+//                        System.out.println("Data added successfully");
+//                    } else {
+//                        System.out.println("Duplicate found.");
+//                    }
                     System.out.println();
                 }
             }
