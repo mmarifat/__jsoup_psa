@@ -1,5 +1,20 @@
-# web-scraping
-This module will be scraping all the movies link and other descriptions. Example: psarips.one
+# JSoup Scraping
 
-To save the result into database, un-comment "//un-comment this to connect and saved into database" these 2 marked part and set SQL info in the Connector file.
+## Introduction
 
+This module will scrap all the movies and tv-series links and other descriptions from psarips.com
+
+## Install the dependencies
+```bash
+mvn dependency:copy-dependencies -DoutputDirectory='yourfoldername'
+#and
+phpMyAdmin to save into database
+```
+
+### Notice
+```bash
+To save the result into database, 
+# import scrapedData.sql into your phpMyAdmin
+# set Databases info in the Connector.java.
+# un-comment code from both movies and tv-shows java file.
+```
